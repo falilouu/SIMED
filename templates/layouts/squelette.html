@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% block css %}
+		<link rel="stylesheet" href="{{ url_for("static", filename="css/bootstrap.css") }}">
+		<link rel="stylesheet" href="{{ url_for("static", filename="css/style.css") }}">
+	{% endblock %}
+	<title>{% block titre %} Page administrateur {% endblock %}</title>
+</head>
+
+<body>
+	{% block nav_bar %}
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="navbar navbar-default my-navbar">
+				<div class="container-fluid">
+
+					<div class="navbar-header">
+						<a class="navbar-brand accueil-titre" href="#">{% block titre_gauche %} Système d'Informations MéDicales {% endblock %}</a>
+						<a class="navbar-brand accueil" href="#">{% block titre_site %} Espace Médecin {% endblock %}</a>
+					</div>
+				
+					{% block dec %}	
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="#" style="font-weight : 600">
+								<form action="">
+									<button type="submit" class="btn btn-primary btn-decon">
+										<span class="glyphicon glyphicon-log-out"></span> Déconnexion
+									</button>
+								</form>
+							</a>
+						</li>
+					</ul>
+					{% endblock %}
+				</div>
+			</nav>
+		</div>
+	</div>		
+	{% endblock %}
+	
+	{% block corps %}
+	<div class="row">
+		<section class="col-md-12">
+			<div class="col-md-2 section-1">
+				<div class="row">
+					<div class="col-md-12 profil">
+						<div class="roundedImage">
+							<img src="{{url_for("static", filename="images/icon.png")}}">
+						</div>
+						<p class="nom-admin">{% block nom_user %} NDIAYE - Médecin {% endblock %}</p>
+					</div>
+				</div>
+				{% block menu %}
+				<div class="row">
+					<div class="col-md-12 general">
+						<p class="">General</p>
+					</div>
+				</div>
+				<div class="row menuR">
+					<div class="col-md-12 menu">
+						<a href="{{ url_for("lister_consultations") }}"><div class="row bordureMenu-active" style="font-weight: bold;">Consultations</div></a>
+					</div>
+				</div>
+				<div class="row menuR">
+					<div class="col-md-12 menu">
+						<a href="{{ url_for("lister_examens") }}"><div class="row bordureMenu" style="font-weight: bold;">Examens et vaccins</div></a>
+					</div>
+				</div>
+				<div class="row menuR">
+					<div class="col-md-12 menu">
+						<a href="{{ url_for("lister_antecedents") }}"><div class="row bordureMenu" style="font-weight: bold;">Antécédents et allergies</div></a>
+					</div>
+				</div>
+				<div class="row menuR">
+					<div class="col-md-12 menu">
+						<a href="{{ url_for("lister_hospitalisations") }}"><div class="row bordureMenu" style="font-weight: bold;">Rendez-vous et hospitalisations</div></a>
+					</div>
+				</div>
+				{% endblock %}
+			</div>
+			<div class="col-md-10 section-2"> 
+				<div class="row">
+					{% block titre_page %}
+					<div class="col-md-9 title-page">
+						<h2> Consultations </h2>
+					</div>
+					{% endblock %}
+					<div class="col-md-3 title-page">
+						{% block nom_patient %}{% endblock %}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-1 col-md-offset-11 col-button">
+						
+					</div>
+				</div>
+				<div class="row">
+					{% block contenu_page %}  {% endblock %}
+					{% block bouton_supprimer %} {% endblock %}	  
+				</div>
+			</div>
+		</section> 
+	 </div>
+
+	 {% endblock %}
+
+	 
+
+
+	 <!-- footer -->
+	 {% block footer %}
+     <footer style="background-color: rgb(16, 100, 121); color: white;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center" style="margin-top: 10px; margin-bottom: 10px;">
+					Copyright 2020 Front-End Team. All rights reserved
+				</div>
+            </div>  
+        </div>
+	 </footer>
+	 {% endblock %}
+	 <!-- end of footer -->
+	 
+	 
+	 <script src="../static/js/jquery.min.js"></script>
+	 <script src="../static/js/bootstrap.min.js"></script>
+	 <script rel="stylesheet" src="{{ url_for("static", filename="js/fiche.js") }}"></script>
+	 {% block script %} {% endblock %}
+
+</body>
+ 
+</html>

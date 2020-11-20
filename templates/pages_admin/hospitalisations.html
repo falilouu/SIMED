@@ -1,0 +1,115 @@
+{% extends "layouts/squelette.html" %}
+
+{% block titre_page %} 
+	<div class="col-md-9 title-page">
+		<h2> Rendez-vous et Hospitalisations </h2>
+	</div> 
+{% endblock %}
+
+{% block nom_patient %}<h2> DMP: Moussa DIOP </h2>{% endblock %} 
+
+{% block menu %}
+	<div class="row">
+		<div class="col-md-12 general">
+			<p class="">General</p>
+		</div>
+	</div>
+	<div class="row menuR">
+        <div class="col-md-12 menu">
+            <a href="{{ url_for("lister_consultations") }}"><div class="row bordureMenu" style="font-weight: bold;">Consultations</div></a>
+        </div>
+    </div>
+    <div class="row menuR">
+        <div class="col-md-12 menu">
+            <a href="{{ url_for("lister_examens") }}"><div class="row bordureMenu" style="font-weight: bold;">Examens et vaccins</div></a>
+        </div>
+    </div>
+    <div class="row menuR">
+        <div class="col-md-12 menu">
+            <a href="{{ url_for("lister_antecedents") }}"><div class="row bordureMenu" style="font-weight: bold;">Antécédents et allergies</div></a>
+        </div>
+    </div>
+    <div class="row menuR">
+        <div class="col-md-12 menu">
+            <a href="{{ url_for("lister_hospitalisations") }}"><div class="row bordureMenu-active" style="font-weight: bold;">Rendez-vous et hospitalisations</div></a>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block bouton_supprimer %}
+	
+{% endblock %}
+
+
+{% block contenu_page %}
+	<div class="col-md-6">
+        <h2> Rendez-vous </h2>
+		<table class="table table-bordered sunu-tableau">
+			<thead class="thead-light">
+			<tr>
+				<th scope="col" class="col-md-3">Date</th>
+				<th scope="col" class="col-md-2">Heure</th>
+				<th scope="col" class="col-md-3">Hôpital</th>
+				<th scope="col" class="col-md-3">Docteur</th>
+				<!-- <th scope="col">Action</th> -->
+			</tr>
+			</thead>
+			<tbody>
+
+			{% for rv in rvs %}
+			<tr>
+				<th scope="row">{{ rv["date"] }}</th>
+				<td>{{ rv["heure"] }}</td>	
+				<td>{{ rv["hopital"] }}</td>	
+				<td>{{ rv["docteur"] }}</td>		
+				
+			</tr>
+
+
+			{% endfor %}
+
+
+			</tbody>
+		</table>
+		
+	
+		
+    </div>
+    
+    <div class="col-md-6">
+        <h2> Hospitalisations </h2>
+		<table class="table table-bordered sunu-tableau">
+			<thead class="thead-light">
+			<tr>
+				<th scope="col" class="col-md-3">Date d'entrée</th>
+				<th scope="col" class="col-md-3">Date de sortie</th>
+				<th scope="col" class="col-md-3">Motifs</th>
+				<th scope="col" class="col-md-3">Hôpital</th>
+				<th scope="col" class="col-md-3">Médecin</th>
+				<!-- <th scope="col">Action</th> -->
+			</tr>
+			</thead>
+			<tbody>
+
+			{% for hospitalisation in hospitalisations %}
+			<tr>
+				<th scope="row">{{ hospitalisation["date_entree"] }}</th>
+				<td>{{ hospitalisation["date_sortie"] }}</td>		
+				<td>{{ hospitalisation["motif"] }}</td>		
+				<td>{{ hospitalisation["nom"] }}</td>		
+				<td>Dr DIOUF</td>				
+				
+			</tr>
+
+
+			{% endfor %}
+
+
+			</tbody>
+		</table>
+		
+    
+		
+	</div>
+{% endblock %}

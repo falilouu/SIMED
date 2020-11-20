@@ -1,0 +1,87 @@
+{% extends "layouts/squelette.html" %}
+
+{% block titre_page %} 
+	<div class="col-md-9 title-page">
+		<h2> Ordonnance </h2>
+	</div> 
+{% endblock %}
+
+
+{% block menu %}
+	<div class="row">
+		<div class="col-md-12 general">
+			<p class="">General</p>
+		</div>
+	</div>
+	<div class="row menuR">
+		<div class="col-md-12 menu">
+			<a href="{{ url_for("gestion_etudiant") }}"><div class="row bordureMenu-active" style="font-weight: bold;">Consultations</div></a>
+		</div>
+	</div>
+	<div class="row menuR">
+		<div class="col-md-12 menu">
+			<a href="{{ url_for("gestion_etudiant") }}"><div class="row bordureMenu" style="font-weight: bold;">Examens et vaccins</div></a>
+		</div>
+	</div>
+	<div class="row menuR">
+		<div class="col-md-12 menu">
+			<a href="{{ url_for("gestion_pavillon") }}"><div class="row bordureMenu" style="font-weight: bold;">Antécédents et allergies</div></a>
+		</div>
+	</div>
+	<div class="row menuR">
+		<div class="col-md-12 menu">
+			<a href="{{ url_for("gestion_pavillon") }}"><div class="row bordureMenu" style="font-weight: bold;">Rendez-vous et hospitalisations</div></a>
+		</div>
+	</div>
+{% endblock %}
+
+
+{% block bouton_supprimer %}
+	<!-- <div class="col-md-1"> 	
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalSupprimerEtudiant">Supprimer</button>
+	</div> -->
+{% endblock %}
+
+
+{% block contenu_page %}
+	<div class="col-md-12">
+		<table class="table table-bordered sunu-tableau">
+			<thead class="thead-light table-striped">
+			<tr>
+				<th scope="col" class="col-md-2">Médicamments</th>
+				<th scope="col" class="col-md-1">Quantités</th>
+				<th scope="col">Administration</th>
+				<th scope="col">Type</th>
+				<th scope="col" class="col-md-2">Renouvellement</th>
+				<th scope="col" class="col-md-4">Posologie</th>
+				<!-- <th scope="col">Action</th> -->
+			</tr>
+			</thead>
+			<tbody>
+
+			{% for user in ordonnances %}
+			<tr>
+				<th scope="row">{{ ordonnance["nom"] }}</th>
+				<td>{{ ordonnance["quantite"] }}</td>
+				<td>{{ ordonnance["administration"] }}</td>
+				<td>{{ ordonnance["type"] }}</td>
+				<td>{{ ordonnance["renouvellement"] }}</td>			
+				<td>{{ ordonnance["posologie"] }}</td>			
+				<!-- <td class="col-md-2">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-2">
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalModifier{{ user["id"] }}">Modifier</button>
+						</div>
+					</div>
+				</td> -->
+			</tr>
+
+
+			{% endfor %}
+
+
+			</tbody>
+		</table>
+		
+	</div>
+{% endblock %}
